@@ -26,7 +26,6 @@ FEED_URLS = [
     "https://www.ridicorp.com/feed",
     "https://meetup.toast.com/rss",
     "https://news.hada.io/rss/news",
-    "https://v2.velog.io/rss/",
     "https://blog.gaerae.com/feeds/posts/default?alt=rss",
     "https://techblog.lycorp.co.jp/ko/feed/index.xml",
     "https://javacan.tistory.com/rss",

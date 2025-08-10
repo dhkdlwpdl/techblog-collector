@@ -1,3 +1,4 @@
+import argparse
 from rss_reader import fetch_rss_articles
 from notion_reader import fetch_processed_articles
 from gpt_recommender import generate_digest
@@ -71,9 +72,22 @@ def _log_processed_articles(articles, notion_token, notion_log_db_id):
 
 if __name__ == "__main__":
     # 실행 기간
-    today = datetime.now(KST).date()
-    start_date, end_date = today - timedelta(days=7), today
-    print(f"수집 범위: {start_date} ~ {end_date}")
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--start_date', type=str, default='')
+    parser.add_argument('--end_date', type=str, default='')
+    args = parser.parse_args()
+
+    if args.start_date:
+        start_date = datetime.strptime(args.start_date, '%Y-%m-%d').date()
+    else:
+        start_date = datetime.now().date() - timedelta(days=7)
+
+    if args.end_date:
+        end_date = datetime.strptime(args.end_date, '%Y-%m-%d').date()
+    else:
+        end_date = datetime.now().date()
+
+    print(f"start_date: {start_date}, end_date: {end_date}")
 
     # 새 글 수집
     articles = _collect_rss_articles(FEED_URLS, start_date, end_date)
