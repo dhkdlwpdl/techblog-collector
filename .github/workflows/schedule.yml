@@ -1,4 +1,4 @@
-name: Scheduled RSS Collector
+name: Scheduled Techblog Collector
 
 on:
   schedule:
